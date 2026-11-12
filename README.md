@@ -1,269 +1,388 @@
 # IoT Sentinel AI
-### Machine Learning-Based Security Analysis for MQTT-Enabled IoT Networks
+### Machine Learning-Based Intrusion Detection for MQTT-Based IoT Networks
 
-IoT Sentinel AI is a research-oriented cybersecurity project that explores machine-learning-based detection of anomalous traffic in MQTT-enabled IoT networks.
+IoT Sentinel AI is a machine learning-based security research project focused on detecting suspicious network activity in MQTT-based Internet of Things (IoT) environments.
 
-The project combines a controlled MQTT testbed, packet-level traffic analysis, feature engineering, machine learning, and an interactive Streamlit dashboard to investigate MQTT message-flooding detection and evaluate model performance on an external IoT cybersecurity dataset.
+The project combines a controlled MQTT testbed with an external MQTT intrusion-detection benchmark to investigate machine learning approaches for network traffic classification and intrusion detection.
 
-## Research Overview
+It includes an experimental data collection pipeline, PCAP-based feature extraction, machine learning evaluation, an offline inference engine, and an interactive Streamlit dashboard.
 
-The project investigates two separate evaluation tracks:
+---
 
-1. **Controlled MQTT Testbed:** Binary classification of attack-free and MQTT message-flooding traffic using a locally developed experimental testbed.
-2. **External Dataset Benchmark:** Six-class classification using the MQTTEEB-D dataset, evaluated through Leave-One-Loop-Out cross-validation.
+## Research Question
 
-These tracks are evaluated separately because they use different datasets, features, and classification tasks.
+How effectively can machine learning models identify malicious MQTT traffic using network traffic characteristics, and how do their detection capabilities perform across controlled experiments and an external MQTT benchmark?
 
-## Objectives
+## Project Objectives
 
-- Develop a controlled MQTT-based IoT experimental environment.
-- Generate normal IoT telemetry and controlled MQTT message-flooding traffic.
-- Capture and analyse network traffic using TShark.
-- Extract time-based and packet-level traffic features.
-- Investigate supervised and unsupervised machine-learning approaches.
-- Evaluate detection performance using run-grouped validation.
-- Examine performance across different message-flooding intensities.
-- Benchmark multiclass classification using an external MQTT cybersecurity dataset.
-- Develop an offline inference engine and interactive dashboard.
+- Develop a controlled MQTT-based IoT testbed for collecting network traffic.
+- Extract network-level features from MQTT packet captures.
+- Investigate machine learning approaches for binary intrusion detection.
+- Evaluate detection performance under different MQTT message flooding rates.
+- Assess multiclass classification performance using the external MQTTEEB-D dataset.
+- Develop an offline inference engine for classifying MQTT traffic windows.
+- Provide an interactive dashboard for traffic analysis, intrusion detection, and model evaluation.
 
-## Project Architecture
+---
 
-The project follows this workflow:
+## System Architecture
 
-1. **MQTT Testbed:** Simulated IoT devices communicate through a local Mosquitto MQTT broker.
-2. **Traffic Generation:** Normal telemetry and controlled MQTT message-flooding experiments are performed.
-3. **Traffic Capture:** Network traffic is captured and stored in PCAP/PCAPNG files.
-4. **Feature Extraction:** A Python pipeline uses TShark to extract network traffic features.
-5. **Dataset Preparation:** Extracted features are audited, validated, and prepared for machine learning.
-6. **Model Training and Evaluation:** Machine-learning models are trained and evaluated using appropriate validation strategies.
-7. **Inference:** The trained Random Forest detector processes extracted feature CSV files and generates predictions.
-8. **Visualization:** A Streamlit dashboard presents traffic analysis, detection results, and model evaluation metrics.
+The project follows an experimental workflow consisting of data collection, feature extraction, model development, evaluation, and offline inference.
 
-## Technology Stack
+```text
+Simulated IoT Devices
+        |
+        v
+   MQTT Broker
+   (Mosquitto)
+        |
+        v
+ MQTT Traffic Collection
+        |
+        v
+   PCAP Capture
+        |
+        v
+  Feature Extraction
+        |
+        v
+ Dataset Preparation
+        |
+        +----------------------------+
+        |                            |
+        v                            v
+Controlled MQTT Testbed       MQTTEEB-D Dataset
+        |                            |
+        v                            v
+Binary Classification        Six-Class Classification
+        |                            |
+        v                            v
+Model Evaluation              External Benchmark
+        |                            |
+        +-------------+--------------+
+                      |
+                      v
+              Offline Inference
+                      |
+                      v
+              Streamlit Dashboard
+```
 
-| Category | Technologies |
-|---|---|
-| Programming Language | Python |
-| MQTT Broker | Eclipse Mosquitto |
-| MQTT Communication | Paho MQTT |
-| Traffic Analysis | Wireshark / TShark |
-| Packet Capture | Npcap |
-| Machine Learning | Scikit-learn |
-| Data Processing | Pandas, NumPy |
-| Visualization | Matplotlib, Streamlit |
-| Model Storage | Joblib |
-| Testing | Pytest |
-| Development Environment | VS Code |
+The controlled testbed and external benchmark are evaluated separately because they use different datasets, feature sets, and classification tasks.
 
-## Research Track 1: Controlled MQTT Testbed
+---
 
-A local MQTT testbed was developed using simulated IoT devices and a Mosquitto broker.
+## Experimental Setup
 
-### Experimental Setup
+A local MQTT environment was developed using Mosquitto and simulated IoT devices.
 
-- Three simulated IoT devices.
-- Normal sensor telemetry containing temperature, humidity, battery, and device status.
-- Controlled MQTT message-flooding experiments at 2, 5, and 10 messages per second.
-- Nine independent experimental runs.
-- 2,385 telemetry records.
-- 126 PCAP-derived traffic windows, including 12 mixed-boundary windows.
+**Environment and tools:**
 
-The primary binary evaluation used 114 windows after excluding mixed-boundary windows:
+- MQTT Broker: Mosquitto 2.1.2
+- MQTT Client Library: Paho MQTT 2.2.0
+- Packet Analysis: Wireshark / TShark
+- Programming Language: Python 3.13
+- Operating System: Windows 11
 
-- 102 attack-free windows.
-- 12 attack-present windows.
+Three simulated IoT devices publish sensor telemetry containing:
 
-### Machine Learning Evaluation
+- Temperature
+- Humidity
+- Battery level
+- Device status
 
-The primary Random Forest models were evaluated using three-fold StratifiedGroupKFold validation, with experimental runs kept separate across folds.
+A controlled MQTT message-flooding scenario was conducted at three configured message rates:
 
-| Model | Accuracy | Balanced Accuracy | Precision | Recall | F1-score |
-|---|---:|---:|---:|---:|---:|
-| Random Forest – Network | 1.0000 | 1.0000 | 1.0000 | 1.0000 | 1.0000 |
-| Random Forest – Combined | 1.0000 | 1.0000 | 1.0000 | 1.0000 | 1.0000 |
-| Dummy Baseline | 0.8947 | 0.5000 | 0.0000 | 0.0000 | 0.0000 |
-| Isolation Forest – Network | 0.6140 | 0.7843 | 0.2143 | 1.0000 | 0.3529 |
+- 2 messages per second
+- 5 messages per second
+- 10 messages per second
 
-The perfect Random Forest results should be interpreted in the context of the small experimental dataset and its limited number of attack-present windows.
+The experiment produced:
 
-### Held-Out Flooding-Rate Evaluation
-
-The detector was also evaluated across held-out message-flooding intensities:
-
-- 2 messages/second
-- 5 messages/second
-- 10 messages/second
-
-The recorded evaluation achieved 100% accuracy at each tested intensity across eight windows per rate.
-
-This evaluates different intensities of the same message-flooding attack family. It does not establish generalization to previously unseen attack families.
-
-## Research Track 2: MQTTEEB-D External Benchmark
-
-The project also evaluates a multiclass Random Forest model using the external MQTTEEB-D dataset.
-
-### Dataset Preparation
-
-- Original records: 222,813
-- Records with missing labels excluded: 246
-- Usable records: 222,567
-- Classification classes: 6
-
-The six classes are:
-
-1. Legitimate
-2. DoS
-3. Flood
-4. Brute Force
-5. Malformed
-6. SlowITe
-
-### Evaluation Methodology
-
-The model was evaluated using four-fold Leave-One-Loop-Out cross-validation.
-
-In each fold, three capture loops were used for training and the remaining loop was held out for testing. This ensured that training and testing data did not share capture loops.
-
-### Overall Results
-
-| Metric | Mean Score |
+| Experimental Metric | Value |
 |---|---:|
-| Accuracy | 49.97% |
-| Balanced Accuracy | 62.36% |
-| Macro Precision | 57.66% |
-| Macro Recall | 62.36% |
-| Macro F1-score | 54.56% |
-| Weighted F1-score | 51.47% |
+| Independent runs | 9 |
+| Telemetry records | 2,385 |
+| PCAP-derived windows | 126 |
+| Primary evaluation windows | 114 |
+| Attack-free windows | 102 |
+| Attack-present windows | 12 |
+| Mixed boundary windows excluded | 12 |
 
-### Class-wise F1-scores
+The 12 mixed boundary windows were excluded from the primary binary evaluation to maintain clearer window-level labels.
 
-| Class | F1-score |
-|---|---:|
-| Legitimate | 26.71% |
-| DoS | 38.09% |
-| Flood | 96.20% |
-| Brute Force | 83.66% |
-| Malformed | 52.05% |
-| SlowITe | 30.66% |
+---
 
-The results demonstrate varying classification performance across traffic categories. In particular, the model performed strongly on Flood and Brute Force traffic, while Legitimate and SlowITe classification remained challenging.
+## Machine Learning Methodology
 
-The evaluation measures generalization across capture loops, not generalization to unseen attack families.
+### 1. Controlled Testbed: Binary Classification
 
-## Offline Inference Engine
+The controlled experiment investigates binary classification of MQTT traffic into:
 
-The project includes a Random Forest inference engine that processes extracted traffic-feature CSV files.
+- `attack_free`
+- `attack_present`
 
-The final binary detector uses four inter-arrival-time features:
+The final inference model uses four inter-arrival time features:
 
 - Mean inter-arrival time
 - Standard deviation of inter-arrival time
 - Minimum inter-arrival time
 - Maximum inter-arrival time
 
-The inference engine validates the input features, generates predictions and class probabilities, and produces an output containing detection results.
+A Random Forest classifier was selected for the final offline inference engine.
+
+Model evaluation used **3-fold StratifiedGroupKFold**, with grouping by independent experiment run (`run_id`) to reduce the risk of data leakage between training and validation folds.
+
+### 2. Binary Model Evaluation
+
+The following models were evaluated:
+
+| Model | Accuracy | Balanced Accuracy | Precision | Recall | F1 Score |
+|---|---:|---:|---:|---:|---:|
+| Dummy Baseline | 89.47% | 50.00% | 0.00% | 0.00% | 0.00% |
+| Random Forest (Network) | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% |
+| Random Forest (Combined) | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% |
+| Isolation Forest (Network) | 61.40% | 78.43% | 21.43% | 100.00% | 35.29% |
+
+The two Random Forest models achieved perfect scores on the primary grouped cross-validation evaluation.
+
+**Important:** The primary evaluation contains only 12 attack-present windows. Therefore, the perfect scores should be interpreted in the context of this limited controlled dataset and should not be considered proof of generalization to all MQTT attacks or real-world IoT networks.
+
+### 3. Held-Out Flooding-Rate Evaluation
+
+Additional evaluation was performed by holding out individual flooding rates from model training.
+
+| Held-Out Rate | Training Rates | Test Windows | Accuracy |
+|---|---|---:|---:|
+| 2 msg/s | 5, 10 msg/s | 8 | 100% |
+| 5 msg/s | 2, 10 msg/s | 8 | 100% |
+| 10 msg/s | 2, 5 msg/s | 8 | 100% |
+
+These results demonstrate performance across the tested flooding rates within the same message-flooding attack family. They do not establish generalization to previously unseen attack families.
+
+---
+
+## External Benchmark: MQTTEEB-D
+
+The project also evaluates a separate six-class MQTT intrusion-detection task using the external **MQTTEEB-D** dataset.
+
+### Dataset Summary
+
+| Metric | Value |
+|---|---:|
+| Original records | 222,813 |
+| Records with missing labels excluded | 246 |
+| Usable records | 222,567 |
+| Number of classes | 6 |
+
+The six evaluated classes are:
+
+- Legitimate
+- DoS
+- Flood
+- Brute Force
+- Malformed
+- SlowITe
+
+### Evaluation Methodology
+
+The external benchmark uses **4-fold Leave-One-Loop-Out (LOLO) validation**.
+
+For each fold, three capture loops are used for training, while the remaining capture loop is held out for testing.
+
+This evaluation measures performance across different capture loops. It does not establish generalization to unseen attack families.
+
+### Overall Benchmark Results
+
+| Metric | Score |
+|---|---:|
+| Mean Accuracy | 49.97% |
+| Balanced Accuracy | 62.36% |
+| Macro Precision | 57.66% |
+| Macro Recall | 62.36% |
+| Macro F1 Score | 54.56% |
+| Weighted F1 Score | 51.47% |
+
+### Class-Wise Performance
+
+| Class | Precision | Recall | F1 Score |
+|---|---:|---:|---:|
+| Brute Force | 76.22% | 95.41% | 83.66% |
+| DoS | 40.39% | 36.21% | 38.10% |
+| Flood | 96.60% | 95.81% | 96.20% |
+| Legitimate | 37.20% | 30.91% | 26.71% |
+| Malformed | 76.39% | 39.50% | 52.05% |
+| SlowITe | 19.19% | 76.30% | 30.66% |
+
+The model achieved its strongest F1 score for the Flood class, while Legitimate traffic was the weakest-performing class.
+
+These results highlight the challenges of multiclass MQTT traffic classification across different capture loops.
+
+---
+
+## Offline Inference Engine
+
+IoT Sentinel AI includes an offline inference engine implemented in Python.
+
+The inference engine:
+
+- Loads the trained Random Forest model.
+- Validates the required input features.
+- Accepts traffic-window feature data.
+- Predicts whether a window is attack-free or attack-present.
+- Calculates class probabilities.
+- Reports prediction execution time.
+- Supports CSV-based batch inference.
+
+The final inference model uses four inter-arrival time features.
 
 ### Inference Benchmark
 
-The sequential inference benchmark used 1,000 single-row predictions after 100 warm-up predictions.
+The inference benchmark was conducted using 1,000 sequential single-row prediction calls after 100 warm-up calls.
 
 | Metric | Result |
 |---|---:|
 | Mean Latency | 76.772 ms |
 | Median Latency | 76.488 ms |
-| 95th Percentile Latency | 79.398 ms |
-| 99th Percentile Latency | 81.304 ms |
+| Minimum Latency | 73.9455 ms |
+| Maximum Latency | 111.3691 ms |
+| 95th Percentile | 79.398 ms |
+| 99th Percentile | 81.304 ms |
 | Throughput | 13.025 predictions/second |
 
-These measurements cover the model prediction and probability-calculation path after feature validation. Model loading and warm-up are excluded. They are not end-to-end MQTT latency measurements or evidence of performance on embedded IoT hardware.
+The benchmark measures the prediction call, including model prediction and probability calculation, after feature validation. Model loading and warm-up are excluded.
 
-## Streamlit Dashboard
+These measurements represent the tested Python inference environment, not end-to-end MQTT processing latency or embedded-device performance.
 
-The project includes an interactive Streamlit dashboard with five main sections.
+---
 
-### 1. Overview
-- Project summary and key experimental metrics.
-- CSV upload functionality.
-- Offline detection.
-- Prediction summaries and downloadable results.
+## Interactive Streamlit Dashboard
 
-### 2. Traffic Analysis
-- Recorded MQTT traffic analysis.
-- Packet-rate and inter-arrival-time visualization.
-- Actual versus predicted detection comparison.
-- Traffic distribution and detailed records.
+The project includes an interactive dashboard built using Streamlit.
 
-### 3. Intrusion Detection
-- CSV-based traffic-feature upload.
-- Random Forest inference.
-- Attack-free and attack-present probabilities.
-- Detailed predictions and downloadable output.
+The dashboard provides five main sections:
 
-### 4. Model Evaluation
-- Binary model comparison.
-- F1-score visualization.
-- Confusion-matrix results.
-- Held-out flooding-rate evaluation.
+1. **System Overview:** Project summary, model information, experimental statistics, and CSV upload.
+2. **Traffic Analysis:** MQTT experiment selection, packet-rate analysis, inter-arrival-time visualization, and traffic records.
+3. **Intrusion Detection:** Offline CSV inference, prediction results, attack probabilities, and downloadable results.
+4. **Model Evaluation:** Model comparison, F1 scores, confusion matrix counts, and held-out flooding-rate results.
+5. **External Benchmark:** MQTTEEB-D overall performance, LOLO fold results, and class-wise evaluation.
 
-### 5. External Benchmark
-- MQTTEEB-D benchmark results.
-- Cross-validation fold metrics.
-- Class-wise precision, recall, and F1-scores.
+### Dashboard Screenshots
 
-**Note:** The dashboard performs offline CSV-based inference and displays recorded evaluation results. It does not provide live MQTT traffic monitoring.
+#### 1. System Overview
+
+![IoT Sentinel AI Dashboard Overview](docs/screenshots/01_dashboard_overview.png)
+
+#### 2. MQTT Traffic Analysis
+
+![MQTT Traffic Analysis - Part 1](docs/screenshots/02_traffic_analysis_part1.png)
+
+![MQTT Traffic Analysis - Part 2](docs/screenshots/03_traffic_analysis_part2.png)
+
+#### 3. Intrusion Detection
+
+![Intrusion Detection - Part 1](docs/screenshots/04_intrusion_detection_part1.png)
+
+![Intrusion Detection - Part 2](docs/screenshots/05_intrusion_detection_part2.png)
+
+#### 4. Model Evaluation
+
+![Binary Model Evaluation](docs/screenshots/06_model_evaluation.png)
+
+#### 5. MQTTEEB-D External Benchmark
+
+![External Benchmark - Part 1](docs/screenshots/07_external_benchmark_part1.png)
+
+![External Benchmark - Part 2](docs/screenshots/08_external_benchmark_part2.png)
+
+---
+
+## Technology Stack
+
+| Category | Technologies |
+|---|---|
+| Programming Language | Python |
+| Machine Learning | Scikit-learn |
+| Data Processing | Pandas, NumPy |
+| Visualization | Matplotlib, Streamlit |
+| MQTT Communication | Mosquitto, Paho MQTT |
+| Packet Analysis | Wireshark, TShark |
+| Model Serialization | Joblib |
+| Testing | Pytest |
+| Development Environment | VS Code |
+| Version Control | Git and GitHub |
+
+---
 
 ## Repository Structure
 
 ```text
 IoT-Sentinel-AI/
 │
+├── dashboard.py
+├── requirements.txt
+├── requirements-dev.txt
+├── README.md
+├── .gitignore
+│
 ├── .streamlit/
 │   └── config.toml
 │
-├── configs/
 ├── data/
 │   ├── raw/
 │   ├── processed/
 │   └── external/
 │
 ├── docs/
-├── models/
-│   ├── baseline_v1/
-│   └── [primary trained models]
+│   └── screenshots/
+│       ├── 01_dashboard_overview.png
+│       ├── 02_traffic_analysis_part1.png
+│       ├── 03_traffic_analysis_part2.png
+│       ├── 04_intrusion_detection_part1.png
+│       ├── 05_intrusion_detection_part2.png
+│       ├── 06_model_evaluation.png
+│       ├── 07_external_benchmark_part1.png
+│       └── 08_external_benchmark_part2.png
 │
-├── notebooks/
+├── models/
+│   ├── random_forest_interarrival_v2.joblib
+│   ├── random_forest_network_v2.joblib
+│   ├── random_forest_combined_v2.joblib
+│   └── isolation_forest_network_v2.joblib
+│
 ├── reports/
-│   ├── figures/
+│   ├── model_evaluation_v2.csv
+│   ├── model_evaluation_summary_v2.json
+│   ├── inference_benchmark_v2.json
+│   ├── primary_inference_v2.csv
+│   ├── unseen_flood_rate_evaluation_v2.csv
+│   ├── final_detector_manifest_v2.json
 │   └── mqtteeb/
 │       └── multiclass_v1/
+│           ├── class_metrics.csv
+│           ├── confusion_matrix.csv
+│           ├── experiment_summary.json
+│           └── fold_metrics.csv
 │
-├── research/
 ├── scripts/
-│   ├── inference_engine_v2.py
+│   ├── audit_mqtt_experiment.py
+│   ├── benchmark_inference_v2.py
+│   ├── extract_pcap_features.py
+│   ├── extract_pcap_features_v2.py
+│   ├── prepare_ml_dataset_v2.py
 │   ├── train_evaluate_models_v2.py
 │   ├── train_final_detector_v2.py
+│   ├── evaluate_unseen_flood_rates_v2.py
 │   └── train_mqtteeb_multiclass_v1.py
 │
-├── src/
-├── tests/
-│
-├── dashboard.py
-├── requirements.txt
-├── requirements-dev.txt
-├── .gitignore
-└── README.md
+└── tests/
+    └── test_inference_engine_v2.py
 ```
 
-Some directories contain local experimental data or working files that are not distributed with the repository.
+---
 
-## Installation and Setup
-
-### Prerequisites
-
-- Python 3.13
-- Git
-- Windows, Linux, or macOS
-- Mosquitto and TShark for reproducing the MQTT experimental pipeline.
+## Installation and Usage
 
 ### 1. Clone the Repository
 
@@ -288,6 +407,11 @@ Activate it on Windows PowerShell:
 
 ```bash
 python -m pip install -r requirements.txt
+```
+
+For development and testing:
+
+```bash
 python -m pip install -r requirements-dev.txt
 ```
 
@@ -297,70 +421,59 @@ python -m pip install -r requirements-dev.txt
 streamlit run dashboard.py
 ```
 
-The dashboard uses the included binary Random Forest model and evaluation reports. The required project artifacts must be present in their expected locations.
+The dashboard will open in your browser.
 
-## Running the Inference Engine
-
-The inference engine accepts an extracted traffic-feature CSV file.
+### 5. Run the Tests
 
 ```bash
-python scripts/inference_engine_v2.py --input <INPUT_CSV> --output <OUTPUT_CSV>
+python -m pytest tests/ -v
 ```
 
-The input CSV must contain the four required inter-arrival-time features.
+### Important Dataset and Model Notes
 
-The engine validates the input, performs prediction, and saves the results to the specified output CSV.
+- Raw experimental PCAP files and datasets are not included in the repository.
+- The external MQTTEEB-D dataset must be obtained separately and placed in the expected local data directory before reproducing its training workflow.
+- The large trained MQTTEEB-D multiclass model artifact is excluded from GitHub.
+- The dashboard's external benchmark page displays the saved evaluation reports and does not require that large model artifact.
+- The final binary inference model is included in the repository.
 
-## Running Tests
+---
 
-Run the inference-engine test suite using:
+## Project Limitations
 
-```bash
-python -m pytest tests/test_inference_engine_v2.py -v
-```
+- The controlled testbed evaluates MQTT message flooding as its attack scenario; it does not cover every possible MQTT attack.
+- The primary binary evaluation contains only 12 attack-present windows, so its perfect scores require cautious interpretation.
+- Held-out flooding-rate evaluation covers different rates within the same attack family, not unseen attack families.
+- The external MQTTEEB-D benchmark shows moderate overall multiclass performance, with substantial differences between classes.
+- Leave-One-Loop-Out evaluation measures generalization across capture loops, not across unseen attack families.
+- The dashboard performs offline CSV inference. It does not provide live MQTT traffic monitoring or real-time network intrusion prevention.
+- Inference benchmarks were measured in a desktop Python environment and do not establish performance on resource-constrained IoT devices.
 
-## Dataset and Reproducibility
-
-The MQTTEEB-D external dataset is not included in this repository. Users must obtain the dataset separately and place its files in the directory structure expected by the training script.
-
-The large trained MQTTEEB-D model artifact is also not distributed in this repository. The benchmark evaluation reports are provided separately.
-
-The controlled testbed dataset and packet captures are not included in the public repository. The repository therefore provides the implementation and selected evaluation artifacts rather than a complete copy of all experimental data.
-
-## Limitations
-
-- The controlled testbed contains a limited number of independent experimental runs.
-- The primary binary evaluation contains only 12 attack-present windows.
-- The controlled experiments focus on MQTT message flooding rather than a broad range of attack families.
-- Held-out flooding-rate evaluation does not establish generalization to unseen attack families.
-- External benchmark performance varies considerably across the six traffic classes.
-- Inference latency measurements are not end-to-end network latency measurements.
-- Live MQTT monitoring and embedded-device deployment have not been implemented or validated.
+---
 
 ## Future Work
 
-- Expand the controlled MQTT testbed with additional attack scenarios.
-- Increase the diversity and scale of experimental traffic.
-- Investigate improved generalization across attack types and environments.
-- Explore lightweight deployment on resource-constrained IoT devices.
-- Investigate real-time MQTT traffic monitoring.
-- Improve classification performance on challenging external benchmark classes.
+- Expand the controlled testbed with additional MQTT attack scenarios.
+- Collect more independent experimental runs and attack-present samples.
+- Investigate improvements to legitimate-traffic classification in the external benchmark.
+- Evaluate the models on additional independent MQTT environments.
+- Explore real-time inference and deployment in resource-constrained IoT environments.
+- Investigate explainable machine learning techniques for MQTT intrusion detection.
+
+---
 
 ## Author
 
 **Hadiya Khan**
 
-Computer Engineering Student | Cybersecurity and IoT Research
-
 - GitHub: [@khhadiya-09](https://github.com/khhadiya-09)
 - Project: IoT Sentinel AI
-
-## Acknowledgements
-
-This project uses the MQTTEEB-D external dataset for additional multiclass benchmarking. Dataset ownership and original research contributions belong to their respective authors.
+- Domain: Computer Engineering Student | Cybersecurity and IoT Research
 
 ---
 
-**Project:** IoT Sentinel AI  
-**Domain:** IoT Security | MQTT Security | Network Security | Machine Learning
-**Project Type:** Academic Research and Cybersecurity Prototype
+## Acknowledgements
+
+This project was developed as an academic research project exploring machine learning-based intrusion detection for MQTT-based IoT networks.
+
+If you find this project useful, feel free to explore the repository and its implementation.
