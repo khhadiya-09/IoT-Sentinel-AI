@@ -9,6 +9,17 @@ It includes an experimental data collection pipeline, PCAP-based feature extract
 
 ---
 
+## 🚀 Live Demo
+
+**Try IoT Sentinel AI:**  
+[🌐 Open Live Dashboard](https://iot-sentinel-ai.streamlit.app/)
+
+Explore the interactive dashboard for MQTT traffic analysis, offline intrusion detection, model evaluation, and external benchmarking.
+
+> Note: The deployed application currently supports offline CSV-based inference. It does not perform live MQTT traffic monitoring.
+
+---
+
 ## Research Question
 
 How effectively can machine learning models identify malicious MQTT traffic using network traffic characteristics, and how do their detection capabilities perform across controlled experiments and an external MQTT benchmark?
