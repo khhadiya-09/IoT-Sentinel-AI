@@ -1,0 +1,121 @@
+{
+    "dataset": "data\\processed\\ml_dataset_primary_v2.csv",
+    "samples": 114,
+    "independent_runs": 9,
+    "positive_samples": 12,
+    "negative_samples": 102,
+    "cross_validation": {
+        "method": "StratifiedGroupKFold",
+        "splits": 3,
+        "random_state": 42,
+        "group_column": "run_id",
+        "run_overlap_between_train_and_test": false
+    },
+    "feature_groups": {
+        "network": [
+            "packet_rate_per_second",
+            "mean_packet_size_bytes",
+            "std_packet_size_bytes",
+            "min_packet_size_bytes",
+            "max_packet_size_bytes",
+            "mean_interarrival_seconds",
+            "std_interarrival_seconds",
+            "min_interarrival_seconds",
+            "max_interarrival_seconds"
+        ],
+        "combined": [
+            "packet_rate_per_second",
+            "mean_packet_size_bytes",
+            "std_packet_size_bytes",
+            "min_packet_size_bytes",
+            "max_packet_size_bytes",
+            "mean_interarrival_seconds",
+            "std_interarrival_seconds",
+            "min_interarrival_seconds",
+            "max_interarrival_seconds",
+            "mean_temperature",
+            "std_temperature",
+            "mean_humidity",
+            "std_humidity",
+            "mean_battery",
+            "std_battery"
+        ]
+    },
+    "metrics": [
+        {
+            "model": "Dummy_baseline",
+            "feature_group": "network",
+            "folds": 3,
+            "accuracy": 0.8947368421052632,
+            "balanced_accuracy": 0.5,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "false_positive_rate": 0.0,
+            "true_negatives": 102,
+            "false_positives": 0,
+            "false_negatives": 12,
+            "true_positives": 0,
+            "roc_auc": null,
+            "average_precision": null
+        },
+        {
+            "model": "RandomForest_network",
+            "feature_group": "network",
+            "folds": 3,
+            "accuracy": 1.0,
+            "balanced_accuracy": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "false_positive_rate": 0.0,
+            "true_negatives": 102,
+            "false_positives": 0,
+            "false_negatives": 0,
+            "true_positives": 12,
+            "roc_auc": 1.0,
+            "average_precision": 1.0
+        },
+        {
+            "model": "RandomForest_combined",
+            "feature_group": "combined",
+            "folds": 3,
+            "accuracy": 1.0,
+            "balanced_accuracy": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "false_positive_rate": 0.0,
+            "true_negatives": 102,
+            "false_positives": 0,
+            "false_negatives": 0,
+            "true_positives": 12,
+            "roc_auc": 1.0,
+            "average_precision": 1.0
+        },
+        {
+            "model": "IsolationForest_network",
+            "feature_group": "network",
+            "folds": 3,
+            "accuracy": 0.6140350877192983,
+            "balanced_accuracy": 0.7843137254901961,
+            "precision": 0.21428571428571427,
+            "recall": 1.0,
+            "f1": 0.35294117647058826,
+            "false_positive_rate": 0.43137254901960786,
+            "true_negatives": 58,
+            "false_positives": 44,
+            "false_negatives": 0,
+            "true_positives": 12,
+            "roc_auc": 0.9934640522875817,
+            "average_precision": 0.9252666315166316
+        }
+    ],
+    "limitations": [
+        "Only MQTT message flooding is represented.",
+        "Only three configured flooding rates are represented.",
+        "The dataset contains a limited number of independent runs.",
+        "Cross-validation results do not establish generalisation to unseen attack families.",
+        "Final models are fitted on all primary data; their training performance is not independent test performance."
+    ]
+}

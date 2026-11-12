@@ -1,0 +1,59 @@
+{
+    "dataset_version": "v2",
+    "source": "data\\processed\\combined_pcap_features_v2.csv",
+    "primary_output": "data\\processed\\ml_dataset_primary_v2.csv",
+    "boundary_output": "data\\processed\\ml_dataset_boundary_v2.csv",
+    "source_windows": 126,
+    "primary_windows": 114,
+    "boundary_windows": 12,
+    "primary_label_distribution": {
+        "attack_free": 102,
+        "attack_present": 12
+    },
+    "boundary_label_distribution": {
+        "attack_present": 12
+    },
+    "candidate_predictors": [
+        "packet_rate_per_second",
+        "mean_packet_size_bytes",
+        "std_packet_size_bytes",
+        "min_packet_size_bytes",
+        "max_packet_size_bytes",
+        "mean_interarrival_seconds",
+        "std_interarrival_seconds",
+        "min_interarrival_seconds",
+        "max_interarrival_seconds",
+        "mean_temperature",
+        "std_temperature",
+        "mean_humidity",
+        "std_humidity",
+        "mean_battery",
+        "std_battery"
+    ],
+    "excluded_predictors": [
+        "experiment_id",
+        "run_id",
+        "scenario",
+        "window_index",
+        "window_start_epoch",
+        "window_end_epoch",
+        "window_start_utc",
+        "window_end_utc",
+        "window_start_relative_seconds",
+        "window_duration_seconds",
+        "phase_label",
+        "target",
+        "normal_message_count",
+        "attack_message_count",
+        "unique_tcp_streams",
+        "unique_devices",
+        "mqtt_publish_count",
+        "telemetry_message_count",
+        "packet_count",
+        "total_bytes",
+        "publish_rate_per_second"
+    ],
+    "label_definition": "attack_present if attack_message_count > 0; otherwise attack_free",
+    "primary_boundary_policy": "mixed_boundary windows excluded from primary experiment and retained separately",
+    "important_limitation": "Current data represents one attack family: MQTT message flooding at three configured rates. It does not establish generalisation to unseen attack families."
+}

@@ -1,0 +1,5 @@
+model,feature_group,folds,accuracy,balanced_accuracy,precision,recall,f1,false_positive_rate,true_negatives,false_positives,false_negatives,true_positives,roc_auc,average_precision
+Dummy_baseline,network,3,0.8947368421052632,0.5,0.0,0.0,0.0,0.0,102,0,12,0,,
+RandomForest_network,network,3,1.0,1.0,1.0,1.0,1.0,0.0,102,0,0,12,1.0,1.0
+RandomForest_combined,combined,3,1.0,1.0,1.0,1.0,1.0,0.0,102,0,0,12,1.0,1.0
+IsolationForest_network,network,3,0.6140350877192983,0.7843137254901961,0.21428571428571427,1.0,0.35294117647058826,0.43137254901960786,58,44,0,12,0.9934640522875817,0.9252666315166316

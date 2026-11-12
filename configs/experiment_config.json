@@ -1,0 +1,27 @@
+
+{
+    "project": "IoT Sentinel AI",
+    "experiment_version": "1.0",
+    "broker": {
+        "host": "127.0.0.1",
+        "port": 1883,
+        "protocol": "MQTT"
+    },
+    "capture": {
+        "interface": 8,
+        "filter": "tcp port 1883"
+    },
+    "devices": [
+        "sensor_001",
+        "sensor_002",
+        "sensor_003"
+    ],
+    "normal_baseline": {
+        "experiment_id": "normal_baseline_v2",
+        "duration_seconds": 300,
+        "publishing_enabled": true
+    },
+    "windowing": {
+        "window_size_seconds": 10
+    }
+}

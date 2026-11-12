@@ -1,0 +1,20 @@
+{
+    "model_file": "models\\random_forest_interarrival_v2.joblib",
+    "model_name": "RandomForest_interarrival",
+    "model_version": "v2",
+    "features": [
+        "mean_interarrival_seconds",
+        "std_interarrival_seconds",
+        "min_interarrival_seconds",
+        "max_interarrival_seconds"
+    ],
+    "training_samples": 114,
+    "training_runs": 9,
+    "training_class_distribution": {
+        "attack_free": 102,
+        "attack_present": 12
+    },
+    "cross_validation_reference": "reports/unseen_flood_rate_evaluation_v2.csv",
+    "feature_ablation_reference": "reports/feature_ablation_v2.csv",
+    "important_limitation": "The final model is fitted on all primary windows. Its training performance is not independent test performance. Generalisation to unseen attack families has not been established."
+}

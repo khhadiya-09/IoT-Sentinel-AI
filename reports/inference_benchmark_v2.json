@@ -1,0 +1,34 @@
+{
+    "benchmark_name": "IoT Sentinel AI Inference Benchmark",
+    "benchmark_version": "2.0",
+    "model": "C:\\Users\\khhad\\Documents\\IoT-Sentinel-AI\\models\\random_forest_interarrival_v2.joblib",
+    "input_dataset": "C:\\Users\\khhad\\Documents\\IoT-Sentinel-AI\\data\\processed\\ml_dataset_primary_v2.csv",
+    "feature_count": 4,
+    "features": [
+        "mean_interarrival_seconds",
+        "std_interarrival_seconds",
+        "min_interarrival_seconds",
+        "max_interarrival_seconds"
+    ],
+    "benchmark_method": "Repeated sequential single-row predict_one calls. Latency includes input validation, model prediction, probability calculation and Python call overhead. Model loading and warm-up are excluded.",
+    "environment": {
+        "operating_system": "Windows-11-10.0.26200-SP0",
+        "python_version": "3.13.16",
+        "processor": "Intel64 Family 6 Model 141 Stepping 1, GenuineIntel",
+        "numpy_version": "2.5.4",
+        "pandas_version": "3.1.1"
+    },
+    "results": {
+        "iterations": 1000,
+        "warmup_iterations": 100,
+        "total_benchmark_time_seconds": 76.77350650000153,
+        "mean_latency_ms": 76.7720427,
+        "median_latency_ms": 76.48835,
+        "minimum_latency_ms": 73.9455,
+        "maximum_latency_ms": 111.3691,
+        "p95_latency_ms": 79.398175,
+        "p99_latency_ms": 81.30422800000001,
+        "latency_std_ms": 2.1161224863052492,
+        "throughput_predictions_per_second": 13.025326647024778
+    }
+}

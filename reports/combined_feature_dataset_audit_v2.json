@@ -1,0 +1,516 @@
+{
+  "audit_version": "2.0",
+  "read_only_source_audit": true,
+  "source_files": [
+    {
+      "file": "normal_original_v2.csv",
+      "run_id": "normal_baseline_v2_20261108T130132Z_0d8534df",
+      "scenario": "normal_baseline",
+      "rate": null,
+      "expected_rows": 30
+    },
+    {
+      "file": "normal_seed101_v2.csv",
+      "run_id": "normal_baseline_v2_20261111T174556Z_d6e153b1",
+      "scenario": "normal_baseline",
+      "rate": null,
+      "expected_rows": 30
+    },
+    {
+      "file": "normal_seed202_v2.csv",
+      "run_id": "normal_baseline_v2_20261111T175428Z_b01e38fe",
+      "scenario": "normal_baseline",
+      "rate": null,
+      "expected_rows": 30
+    },
+    {
+      "file": "flood_2rps_run01_v2.csv",
+      "run_id": "flood_v2_2rps_run01_20261111T161433Z_13332d0b",
+      "scenario": "message_flooding",
+      "rate": 2.0,
+      "expected_rows": 6
+    },
+    {
+      "file": "flood_2rps_run02_v2.csv",
+      "run_id": "flood_v2_2rps_run02_20261111T180926Z_39e51e4c",
+      "scenario": "message_flooding",
+      "rate": 2.0,
+      "expected_rows": 6
+    },
+    {
+      "file": "flood_5rps_run01_v2.csv",
+      "run_id": "flood_v2_5rps_run01_20261111T164008Z_05155788",
+      "scenario": "message_flooding",
+      "rate": 5.0,
+      "expected_rows": 6
+    },
+    {
+      "file": "flood_5rps_run02_v2.csv",
+      "run_id": "flood_v2_5rps_run02_20261111T181124Z_80434161",
+      "scenario": "message_flooding",
+      "rate": 5.0,
+      "expected_rows": 6
+    },
+    {
+      "file": "test_flood_v2.csv",
+      "run_id": "flood_v2_10rps_run01_20261111T165033Z_8d2db887",
+      "scenario": "message_flooding",
+      "rate": 10.0,
+      "expected_rows": 6
+    },
+    {
+      "file": "flood_10rps_run02_v2.csv",
+      "run_id": "flood_v2_10rps_run02_20261111T181318Z_de9827ee",
+      "scenario": "message_flooding",
+      "rate": 10.0,
+      "expected_rows": 6
+    }
+  ],
+  "file_results": [
+    {
+      "file": "normal_original_v2.csv",
+      "expected_run_id": "normal_baseline_v2_20261108T130132Z_0d8534df",
+      "scenario_expected": "normal_baseline",
+      "configured_rate_msg_per_second": null,
+      "expected_rows": 30,
+      "exists": true,
+      "passed": true,
+      "rows": 30,
+      "columns": 36,
+      "missing_cells": 0,
+      "infinite_cells": 0,
+      "exact_duplicate_rows": 0,
+      "duplicate_predictor_rows": 0,
+      "target_distribution": {
+        "normal": 30
+      },
+      "phase_distribution": {
+        "normal_baseline": 30
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "file": "normal_seed101_v2.csv",
+      "expected_run_id": "normal_baseline_v2_20261111T174556Z_d6e153b1",
+      "scenario_expected": "normal_baseline",
+      "configured_rate_msg_per_second": null,
+      "expected_rows": 30,
+      "exists": true,
+      "passed": true,
+      "rows": 30,
+      "columns": 36,
+      "missing_cells": 0,
+      "infinite_cells": 0,
+      "exact_duplicate_rows": 0,
+      "duplicate_predictor_rows": 0,
+      "target_distribution": {
+        "normal": 30
+      },
+      "phase_distribution": {
+        "normal_baseline": 30
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "file": "normal_seed202_v2.csv",
+      "expected_run_id": "normal_baseline_v2_20261111T175428Z_b01e38fe",
+      "scenario_expected": "normal_baseline",
+      "configured_rate_msg_per_second": null,
+      "expected_rows": 30,
+      "exists": true,
+      "passed": true,
+      "rows": 30,
+      "columns": 36,
+      "missing_cells": 0,
+      "infinite_cells": 0,
+      "exact_duplicate_rows": 0,
+      "duplicate_predictor_rows": 0,
+      "target_distribution": {
+        "normal": 30
+      },
+      "phase_distribution": {
+        "normal_baseline": 30
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "file": "flood_2rps_run01_v2.csv",
+      "expected_run_id": "flood_v2_2rps_run01_20261111T161433Z_13332d0b",
+      "scenario_expected": "message_flooding",
+      "configured_rate_msg_per_second": 2.0,
+      "expected_rows": 6,
+      "exists": true,
+      "passed": true,
+      "rows": 6,
+      "columns": 36,
+      "missing_cells": 0,
+      "infinite_cells": 0,
+      "exact_duplicate_rows": 0,
+      "duplicate_predictor_rows": 0,
+      "target_distribution": {
+        "mixed": 4,
+        "normal": 2
+      },
+      "phase_distribution": {
+        "attack": 2,
+        "mixed_boundary": 2,
+        "post_attack": 1,
+        "pre_attack": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "file": "flood_2rps_run02_v2.csv",
+      "expected_run_id": "flood_v2_2rps_run02_20261111T180926Z_39e51e4c",
+      "scenario_expected": "message_flooding",
+      "configured_rate_msg_per_second": 2.0,
+      "expected_rows": 6,
+      "exists": true,
+      "passed": true,
+      "rows": 6,
+      "columns": 36,
+      "missing_cells": 0,
+      "infinite_cells": 0,
+      "exact_duplicate_rows": 0,
+      "duplicate_predictor_rows": 0,
+      "target_distribution": {
+        "mixed": 4,
+        "normal": 2
+      },
+      "phase_distribution": {
+        "attack": 2,
+        "mixed_boundary": 2,
+        "post_attack": 1,
+        "pre_attack": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "file": "flood_5rps_run01_v2.csv",
+      "expected_run_id": "flood_v2_5rps_run01_20261111T164008Z_05155788",
+      "scenario_expected": "message_flooding",
+      "configured_rate_msg_per_second": 5.0,
+      "expected_rows": 6,
+      "exists": true,
+      "passed": true,
+      "rows": 6,
+      "columns": 36,
+      "missing_cells": 0,
+      "infinite_cells": 0,
+      "exact_duplicate_rows": 0,
+      "duplicate_predictor_rows": 0,
+      "target_distribution": {
+        "mixed": 4,
+        "normal": 2
+      },
+      "phase_distribution": {
+        "attack": 2,
+        "mixed_boundary": 2,
+        "post_attack": 1,
+        "pre_attack": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "file": "flood_5rps_run02_v2.csv",
+      "expected_run_id": "flood_v2_5rps_run02_20261111T181124Z_80434161",
+      "scenario_expected": "message_flooding",
+      "configured_rate_msg_per_second": 5.0,
+      "expected_rows": 6,
+      "exists": true,
+      "passed": true,
+      "rows": 6,
+      "columns": 36,
+      "missing_cells": 0,
+      "infinite_cells": 0,
+      "exact_duplicate_rows": 0,
+      "duplicate_predictor_rows": 0,
+      "target_distribution": {
+        "mixed": 4,
+        "normal": 2
+      },
+      "phase_distribution": {
+        "attack": 2,
+        "mixed_boundary": 2,
+        "post_attack": 1,
+        "pre_attack": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "file": "test_flood_v2.csv",
+      "expected_run_id": "flood_v2_10rps_run01_20261111T165033Z_8d2db887",
+      "scenario_expected": "message_flooding",
+      "configured_rate_msg_per_second": 10.0,
+      "expected_rows": 6,
+      "exists": true,
+      "passed": true,
+      "rows": 6,
+      "columns": 36,
+      "missing_cells": 0,
+      "infinite_cells": 0,
+      "exact_duplicate_rows": 0,
+      "duplicate_predictor_rows": 0,
+      "target_distribution": {
+        "mixed": 4,
+        "normal": 2
+      },
+      "phase_distribution": {
+        "attack": 2,
+        "mixed_boundary": 2,
+        "post_attack": 1,
+        "pre_attack": 1
+      },
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "file": "flood_10rps_run02_v2.csv",
+      "expected_run_id": "flood_v2_10rps_run02_20261111T181318Z_de9827ee",
+      "scenario_expected": "message_flooding",
+      "configured_rate_msg_per_second": 10.0,
+      "expected_rows": 6,
+      "exists": true,
+      "passed": true,
+      "rows": 6,
+      "columns": 36,
+      "missing_cells": 0,
+      "infinite_cells": 0,
+      "exact_duplicate_rows": 0,
+      "duplicate_predictor_rows": 0,
+      "target_distribution": {
+        "mixed": 4,
+        "normal": 2
+      },
+      "phase_distribution": {
+        "attack": 2,
+        "mixed_boundary": 2,
+        "post_attack": 1,
+        "pre_attack": 1
+      },
+      "errors": [],
+      "warnings": []
+    }
+  ],
+  "combined_summary": {
+    "expected_runs": 9,
+    "readable_runs": 9,
+    "expected_rows": 126,
+    "combined_rows": 126,
+    "combined_columns": 36,
+    "target_distribution": {
+      "mixed": 24,
+      "normal": 102
+    },
+    "phase_distribution": {
+      "attack": 12,
+      "mixed_boundary": 12,
+      "normal_baseline": 90,
+      "post_attack": 6,
+      "pre_attack": 6
+    },
+    "scenario_distribution": {
+      "message_flooding": 36,
+      "normal_baseline": 90
+    },
+    "run_distribution": {
+      "flood_v2_10rps_run01_20261111T165033Z_8d2db887": 6,
+      "flood_v2_10rps_run02_20261111T181318Z_de9827ee": 6,
+      "flood_v2_2rps_run01_20261111T161433Z_13332d0b": 6,
+      "flood_v2_2rps_run02_20261111T180926Z_39e51e4c": 6,
+      "flood_v2_5rps_run01_20261111T164008Z_05155788": 6,
+      "flood_v2_5rps_run02_20261111T181124Z_80434161": 6,
+      "normal_baseline_v2_20261108T130132Z_0d8534df": 30,
+      "normal_baseline_v2_20261111T174556Z_d6e153b1": 30,
+      "normal_baseline_v2_20261111T175428Z_b01e38fe": 30
+    },
+    "exact_duplicate_rows": 0,
+    "duplicate_predictor_rows": 0,
+    "missing_cells": 0,
+    "infinite_predictor_cells": 0,
+    "predictor_statistics": {
+      "packet_count": {
+        "count": 126,
+        "min": 10.0,
+        "max": 111.0,
+        "mean": 19.19047619047619,
+        "std": 21.17864838445292
+      },
+      "mqtt_publish_count": {
+        "count": 126,
+        "min": 10.0,
+        "max": 111.0,
+        "mean": 18.928571428571427,
+        "std": 21.13906282984804
+      },
+      "total_bytes": {
+        "count": 126,
+        "min": 3384.0,
+        "max": 39332.0,
+        "mean": 6568.507936507936,
+        "std": 7522.924105107459
+      },
+      "mean_packet_size_bytes": {
+        "count": 126,
+        "min": 316.2307692307692,
+        "max": 354.34234234234236,
+        "mean": 336.966997529433,
+        "std": 9.451509471572464
+      },
+      "std_packet_size_bytes": {
+        "count": 126,
+        "min": 0.8331955809010618,
+        "max": 78.1521047655784,
+        "mean": 18.185289492485218,
+        "std": 28.378886181303184
+      },
+      "min_packet_size_bytes": {
+        "count": 126,
+        "min": 46.0,
+        "max": 340.0,
+        "mean": 265.96031746031747,
+        "std": 120.48113866702288
+      },
+      "max_packet_size_bytes": {
+        "count": 126,
+        "min": 340.0,
+        "max": 356.0,
+        "mean": 343.8412698412698,
+        "std": 5.5953675545081785
+      },
+      "packet_rate_per_second": {
+        "count": 126,
+        "min": 1.0,
+        "max": 11.1,
+        "mean": 1.9190476190476191,
+        "std": 2.117864838445292
+      },
+      "publish_rate_per_second": {
+        "count": 126,
+        "min": 1.0,
+        "max": 11.1,
+        "mean": 1.8928571428571428,
+        "std": 2.113906282984804
+      },
+      "mean_interarrival_seconds": {
+        "count": 126,
+        "min": 0.08994615294716575,
+        "max": 0.9038890838623047,
+        "mean": 0.7218022880641097,
+        "std": 0.24784439648704576
+      },
+      "std_interarrival_seconds": {
+        "count": 126,
+        "min": 0.02565030670630354,
+        "max": 0.8812846383080516,
+        "mean": 0.6980054606645621,
+        "std": 0.23597772947937634
+      },
+      "min_interarrival_seconds": {
+        "count": 126,
+        "min": 1.1205673217773438e-05,
+        "max": 0.001668691635131836,
+        "mean": 0.0008148938890487428,
+        "std": 0.00036325692608578863
+      },
+      "max_interarrival_seconds": {
+        "count": 126,
+        "min": 0.10996890068054199,
+        "max": 2.022458553314209,
+        "mean": 1.8519726518600705,
+        "std": 0.513994663131681
+      },
+      "unique_tcp_streams": {
+        "count": 126,
+        "min": 1.0,
+        "max": 2.0,
+        "mean": 1.1904761904761905,
+        "std": 0.392676726249301
+      },
+      "telemetry_message_count": {
+        "count": 126,
+        "min": 10.0,
+        "max": 111.0,
+        "mean": 18.928571428571427,
+        "std": 21.13906282984804
+      },
+      "mean_temperature": {
+        "count": 126,
+        "min": 23.113999999999997,
+        "max": 29.770909090909093,
+        "mean": 26.432944125108033,
+        "std": 1.5595685195464506
+      },
+      "std_temperature": {
+        "count": 126,
+        "min": 0.6212929733046124,
+        "max": 7.136321134789478,
+        "mean": 2.7343320180511923,
+        "std": 1.6581287484952774
+      },
+      "mean_humidity": {
+        "count": 126,
+        "min": 43.65416666666667,
+        "max": 59.33090909090909,
+        "mean": 50.70552312933015,
+        "std": 3.2282247067323326
+      },
+      "std_humidity": {
+        "count": 126,
+        "min": 1.4661495369623816,
+        "max": 17.391892487752894,
+        "mean": 7.148946570792047,
+        "std": 3.977604024196948
+      },
+      "mean_battery": {
+        "count": 126,
+        "min": 86.02272727272727,
+        "max": 91.201,
+        "mean": 89.03187282366565,
+        "std": 1.5102353892415938
+      },
+      "std_battery": {
+        "count": 126,
+        "min": 1.1308311440589485,
+        "max": 3.978971585225641,
+        "mean": 2.7989647026956037,
+        "std": 0.7582734425018517
+      },
+      "unique_devices": {
+        "count": 126,
+        "min": 3.0,
+        "max": 4.0,
+        "mean": 3.1904761904761907,
+        "std": 0.392676726249301
+      }
+    },
+    "selected_feature_correlations": {
+      "packet_count__mqtt_publish_count": 0.9997858554600778,
+      "packet_rate_per_second__publish_rate_per_second": 0.999785855460078,
+      "unique_tcp_streams__unique_devices": 1.0000000000000002,
+      "packet_count__total_bytes": 0.9998431326931162
+    },
+    "errors": [],
+    "warnings": [],
+    "all_files_passed": true,
+    "overall_passed": true
+  },
+  "methodology_notes": [
+    "The nine source feature CSV files are read but never modified.",
+    "The combined dataset is a concatenation of the nine explicitly manifested files.",
+    "target and phase_label are labels/metadata, not candidate predictors.",
+    "normal_message_count and attack_message_count are ground-truth-derived fields and must not be used as predictors.",
+    "IDs, timestamps, scenario, window indices, and configured attack rate are metadata, not predictors.",
+    "unique_tcp_streams may encode the presence of an additional publisher and must be evaluated for scenario leakage.",
+    "Duplicate predictor vectors are reported separately from exact duplicate rows.",
+    "Correlation is descriptive and does not establish causation or prove feature redundancy.",
+    "Mixed windows are preserved and are not silently converted into binary labels."
+  ]
+}

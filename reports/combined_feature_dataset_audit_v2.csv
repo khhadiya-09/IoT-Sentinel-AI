@@ -1,0 +1,10 @@
+file,expected_run_id,scenario_expected,configured_rate_msg_per_second,expected_rows,exists,passed,rows,columns,missing_cells,infinite_cells,exact_duplicate_rows,duplicate_predictor_rows,target_distribution,phase_distribution,errors,warnings
+normal_original_v2.csv,normal_baseline_v2_20261108T130132Z_0d8534df,normal_baseline,,30,True,True,30,36,0,0,0,0,"{""normal"": 30}","{""normal_baseline"": 30}",[],[]
+normal_seed101_v2.csv,normal_baseline_v2_20261111T174556Z_d6e153b1,normal_baseline,,30,True,True,30,36,0,0,0,0,"{""normal"": 30}","{""normal_baseline"": 30}",[],[]
+normal_seed202_v2.csv,normal_baseline_v2_20261111T175428Z_b01e38fe,normal_baseline,,30,True,True,30,36,0,0,0,0,"{""normal"": 30}","{""normal_baseline"": 30}",[],[]
+flood_2rps_run01_v2.csv,flood_v2_2rps_run01_20261111T161433Z_13332d0b,message_flooding,2.0,6,True,True,6,36,0,0,0,0,"{""mixed"": 4, ""normal"": 2}","{""attack"": 2, ""mixed_boundary"": 2, ""post_attack"": 1, ""pre_attack"": 1}",[],[]
+flood_2rps_run02_v2.csv,flood_v2_2rps_run02_20261111T180926Z_39e51e4c,message_flooding,2.0,6,True,True,6,36,0,0,0,0,"{""mixed"": 4, ""normal"": 2}","{""attack"": 2, ""mixed_boundary"": 2, ""post_attack"": 1, ""pre_attack"": 1}",[],[]
+flood_5rps_run01_v2.csv,flood_v2_5rps_run01_20261111T164008Z_05155788,message_flooding,5.0,6,True,True,6,36,0,0,0,0,"{""mixed"": 4, ""normal"": 2}","{""attack"": 2, ""mixed_boundary"": 2, ""post_attack"": 1, ""pre_attack"": 1}",[],[]
+flood_5rps_run02_v2.csv,flood_v2_5rps_run02_20261111T181124Z_80434161,message_flooding,5.0,6,True,True,6,36,0,0,0,0,"{""mixed"": 4, ""normal"": 2}","{""attack"": 2, ""mixed_boundary"": 2, ""post_attack"": 1, ""pre_attack"": 1}",[],[]
+test_flood_v2.csv,flood_v2_10rps_run01_20261111T165033Z_8d2db887,message_flooding,10.0,6,True,True,6,36,0,0,0,0,"{""mixed"": 4, ""normal"": 2}","{""attack"": 2, ""mixed_boundary"": 2, ""post_attack"": 1, ""pre_attack"": 1}",[],[]
+flood_10rps_run02_v2.csv,flood_v2_10rps_run02_20261111T181318Z_de9827ee,message_flooding,10.0,6,True,True,6,36,0,0,0,0,"{""mixed"": 4, ""normal"": 2}","{""attack"": 2, ""mixed_boundary"": 2, ""post_attack"": 1, ""pre_attack"": 1}",[],[]

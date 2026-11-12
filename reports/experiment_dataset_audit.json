@@ -1,0 +1,291 @@
+{
+    "audit_version": "2.0",
+    "primary_runs": 9,
+    "primary_runs_passed": 9,
+    "pilot_runs": 1,
+    "pilot_runs_passed": 1,
+    "results": [
+        {
+            "run_id": "normal_baseline_v2_20261108T130132Z_0d8534df",
+            "scenario": "normal_baseline",
+            "role": "primary",
+            "passed": true,
+            "duration_seconds": 300,
+            "random_seed": null,
+            "configured_attack_rate": null,
+            "measured_submission_rate": null,
+            "publisher_messages_submitted": null,
+            "publisher_messages_acknowledged": null,
+            "collector_messages_received": null,
+            "collector_messages_rejected": null,
+            "csv_records": 325,
+            "jsonl_records": 325,
+            "missing_values": 0,
+            "label_distribution": {
+                "normal": 325
+            },
+            "device_distribution": {
+                "sensor_001": 150,
+                "sensor_002": 100,
+                "sensor_003": 75
+            },
+            "pcap_size_bytes": 397556,
+            "errors": []
+        },
+        {
+            "run_id": "normal_baseline_v2_20261111T174556Z_d6e153b1",
+            "scenario": "normal_baseline",
+            "role": "primary",
+            "passed": true,
+            "duration_seconds": 300,
+            "random_seed": 101,
+            "configured_attack_rate": null,
+            "measured_submission_rate": null,
+            "publisher_messages_submitted": null,
+            "publisher_messages_acknowledged": null,
+            "collector_messages_received": null,
+            "collector_messages_rejected": null,
+            "csv_records": 325,
+            "jsonl_records": 325,
+            "missing_values": 0,
+            "label_distribution": {
+                "normal": 325
+            },
+            "device_distribution": {
+                "sensor_001": 150,
+                "sensor_002": 100,
+                "sensor_003": 75
+            },
+            "pcap_size_bytes": 398372,
+            "errors": []
+        },
+        {
+            "run_id": "normal_baseline_v2_20261111T175428Z_b01e38fe",
+            "scenario": "normal_baseline",
+            "role": "primary",
+            "passed": true,
+            "duration_seconds": 300,
+            "random_seed": 202,
+            "configured_attack_rate": null,
+            "measured_submission_rate": null,
+            "publisher_messages_submitted": null,
+            "publisher_messages_acknowledged": null,
+            "collector_messages_received": null,
+            "collector_messages_rejected": null,
+            "csv_records": 325,
+            "jsonl_records": 325,
+            "missing_values": 0,
+            "label_distribution": {
+                "normal": 325
+            },
+            "device_distribution": {
+                "sensor_001": 150,
+                "sensor_002": 100,
+                "sensor_003": 75
+            },
+            "pcap_size_bytes": 397676,
+            "errors": []
+        },
+        {
+            "run_id": "flood_v2_2rps_run01_20261111T161433Z_13332d0b",
+            "scenario": "message_flooding",
+            "role": "primary",
+            "passed": true,
+            "duration_seconds": 60,
+            "random_seed": 42,
+            "configured_attack_rate": 2.0,
+            "measured_submission_rate": 2.0,
+            "publisher_messages_submitted": 60,
+            "publisher_messages_acknowledged": 60,
+            "collector_messages_received": 125,
+            "collector_messages_rejected": 0,
+            "csv_records": 125,
+            "jsonl_records": 125,
+            "missing_values": 0,
+            "label_distribution": {
+                "normal": 65,
+                "message_flooding": 60
+            },
+            "device_distribution": {
+                "sensor_001": 30,
+                "sensor_002": 20,
+                "sensor_003": 15,
+                "flood_client_001": 60
+            },
+            "pcap_size_bytes": 156856,
+            "errors": []
+        },
+        {
+            "run_id": "flood_v2_2rps_run02_20261111T180926Z_39e51e4c",
+            "scenario": "message_flooding",
+            "role": "primary",
+            "passed": true,
+            "duration_seconds": 60,
+            "random_seed": 101,
+            "configured_attack_rate": 2.0,
+            "measured_submission_rate": 2.0,
+            "publisher_messages_submitted": 60,
+            "publisher_messages_acknowledged": 60,
+            "collector_messages_received": 125,
+            "collector_messages_rejected": 0,
+            "csv_records": 125,
+            "jsonl_records": 125,
+            "missing_values": 0,
+            "label_distribution": {
+                "normal": 65,
+                "message_flooding": 60
+            },
+            "device_distribution": {
+                "sensor_001": 30,
+                "sensor_002": 20,
+                "sensor_003": 15,
+                "flood_client_001": 60
+            },
+            "pcap_size_bytes": 156628,
+            "errors": []
+        },
+        {
+            "run_id": "flood_v2_5rps_run01_20261111T164008Z_05155788",
+            "scenario": "message_flooding",
+            "role": "primary",
+            "passed": true,
+            "duration_seconds": 60,
+            "random_seed": 42,
+            "configured_attack_rate": 5.0,
+            "measured_submission_rate": 5.0,
+            "publisher_messages_submitted": 150,
+            "publisher_messages_acknowledged": 150,
+            "collector_messages_received": 215,
+            "collector_messages_rejected": 0,
+            "csv_records": 215,
+            "jsonl_records": 215,
+            "missing_values": 0,
+            "label_distribution": {
+                "normal": 65,
+                "message_flooding": 150
+            },
+            "device_distribution": {
+                "sensor_001": 30,
+                "sensor_002": 20,
+                "sensor_003": 15,
+                "flood_client_001": 150
+            },
+            "pcap_size_bytes": 268608,
+            "errors": []
+        },
+        {
+            "run_id": "flood_v2_5rps_run02_20261111T181124Z_80434161",
+            "scenario": "message_flooding",
+            "role": "primary",
+            "passed": true,
+            "duration_seconds": 60,
+            "random_seed": 101,
+            "configured_attack_rate": 5.0,
+            "measured_submission_rate": 5.0,
+            "publisher_messages_submitted": 150,
+            "publisher_messages_acknowledged": 150,
+            "collector_messages_received": 215,
+            "collector_messages_rejected": 0,
+            "csv_records": 215,
+            "jsonl_records": 215,
+            "missing_values": 0,
+            "label_distribution": {
+                "normal": 65,
+                "message_flooding": 150
+            },
+            "device_distribution": {
+                "sensor_001": 30,
+                "sensor_002": 20,
+                "sensor_003": 15,
+                "flood_client_001": 150
+            },
+            "pcap_size_bytes": 267844,
+            "errors": []
+        },
+        {
+            "run_id": "flood_v2_10rps_run01_20261111T165033Z_8d2db887",
+            "scenario": "message_flooding",
+            "role": "primary",
+            "passed": true,
+            "duration_seconds": 60,
+            "random_seed": 42,
+            "configured_attack_rate": 10.0,
+            "measured_submission_rate": 10.0,
+            "publisher_messages_submitted": 300,
+            "publisher_messages_acknowledged": 300,
+            "collector_messages_received": 365,
+            "collector_messages_rejected": 0,
+            "csv_records": 365,
+            "jsonl_records": 365,
+            "missing_values": 0,
+            "label_distribution": {
+                "normal": 65,
+                "message_flooding": 300
+            },
+            "device_distribution": {
+                "sensor_001": 30,
+                "sensor_002": 20,
+                "sensor_003": 15,
+                "flood_client_001": 300
+            },
+            "pcap_size_bytes": 454008,
+            "errors": []
+        },
+        {
+            "run_id": "flood_v2_10rps_run02_20261111T181318Z_de9827ee",
+            "scenario": "message_flooding",
+            "role": "primary",
+            "passed": true,
+            "duration_seconds": 60,
+            "random_seed": 101,
+            "configured_attack_rate": 10.0,
+            "measured_submission_rate": 10.0,
+            "publisher_messages_submitted": 300,
+            "publisher_messages_acknowledged": 300,
+            "collector_messages_received": 365,
+            "collector_messages_rejected": 0,
+            "csv_records": 365,
+            "jsonl_records": 365,
+            "missing_values": 0,
+            "label_distribution": {
+                "normal": 65,
+                "message_flooding": 300
+            },
+            "device_distribution": {
+                "sensor_001": 30,
+                "sensor_002": 20,
+                "sensor_003": 15,
+                "flood_client_001": 300
+            },
+            "pcap_size_bytes": 453956,
+            "errors": []
+        },
+        {
+            "run_id": "normal_baseline_v2_20261108T125829Z_f05f1992",
+            "scenario": "normal_baseline",
+            "role": "pilot",
+            "passed": true,
+            "duration_seconds": 30,
+            "random_seed": null,
+            "configured_attack_rate": null,
+            "measured_submission_rate": null,
+            "publisher_messages_submitted": null,
+            "publisher_messages_acknowledged": null,
+            "collector_messages_received": null,
+            "collector_messages_rejected": null,
+            "csv_records": 33,
+            "jsonl_records": 33,
+            "missing_values": 0,
+            "label_distribution": {
+                "normal": 33
+            },
+            "device_distribution": {
+                "sensor_001": 15,
+                "sensor_002": 10,
+                "sensor_003": 8
+            },
+            "pcap_size_bytes": 42336,
+            "errors": []
+        }
+    ]
+}

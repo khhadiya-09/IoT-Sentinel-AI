@@ -1,0 +1,4 @@
+held_out_rate,training_rates,training_windows,test_windows,test_runs,accuracy,balanced_accuracy,precision,recall,f1,false_positive_rate,tn,fp,fn,tp
+2,"5,10",16,8,2,1.0,1.0,1.0,1.0,1.0,0.0,4,0,0,4
+5,"2,10",16,8,2,1.0,1.0,1.0,1.0,1.0,0.0,4,0,0,4
+10,"2,5",16,8,2,1.0,1.0,1.0,1.0,1.0,0.0,4,0,0,4
