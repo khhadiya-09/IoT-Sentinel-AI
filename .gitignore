@@ -43,3 +43,17 @@ data/external/*
 # OS files
 .DS_Store
 Thumbs.db
+
+# Streamlit secrets
+.streamlit/secrets.toml
+
+# Python environment
+.env/
+.python-version
+
+# Temporary files
+*.tmp
+*.bak
+
+# Large external benchmark model
+models/mqtteeb/*.joblib

@@ -1,0 +1,7 @@
+Actual,legitimate,dos,flood,bruteforce,malformed,slowite
+legitimate,2854,1294,22,8847,2699,1841
+dos,1745,14445,88,0,9514,16010
+flood,401,20,9788,0,2,2
+bruteforce,328,16,0,26322,592,119
+malformed,1913,15969,163,0,42205,45278
+slowite,799,2830,40,5,1015,15401
